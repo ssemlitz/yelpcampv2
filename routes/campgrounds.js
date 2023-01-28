@@ -4,19 +4,15 @@ const catchAsync = require('../utils/catchAsync')
 const Campground = require('../models/campground')
 const campgrounds = require('../controllers/campgrounds')
 const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const { storage } = require('../cloudinary')
+const upload = multer({ storage })
 
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware')
 
 
 router.get('/', catchAsync(campgrounds.index))
 
-// router.post('/', isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
-
-router.post('/', upload.array('image'), (req, res) => {
-    console.log(req.body, req.files)
-    res.send('it worked')
-})
+router.post('/', isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground))
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
