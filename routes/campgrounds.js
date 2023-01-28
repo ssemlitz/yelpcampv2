@@ -6,16 +6,18 @@ const campgrounds = require('../controllers/campgrounds')
 
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware')
 
-router.route('/')
-    .get('/', catchAsync(campgrounds.index))
-    .post('/', isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
+
+router.get('/', catchAsync(campgrounds.index))
+
+router.post('/', isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
-router.route('/:id')
-    .get('/:id', catchAsync(campgrounds.showCampground))
-    .put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground))
-    .delete('/:id', isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground))
+router.get('/:id', catchAsync(campgrounds.showCampground))
+
+router.put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground))
+
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground))
 
 router.get('/:id/edit', isLoggedIn, catchAsync(campgrounds.renderEditForm))
 
