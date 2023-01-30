@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-6">
-        <div id="carouselExampleControls" class="carousel slide" >
+        <div id="carouselControls" class="carousel slide" >
             <div class="carousel-inner">
                 <% campground.images.forEach((img, idx) => {  %>
                 <div class="carousel-item <%= idx === 0 ? 'active' : ''%>">
@@ -13,11 +13,11 @@
 
             </div>
             <% if(campground.images.length > 1) {%>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
@@ -56,7 +56,7 @@
                 <label class="form-label" for="rating">Rating</label>
                 <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
             </div> -->
-            <fieldset class="starability-basic">
+            <fieldset class="starability-grow">
                 <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
                     aria-label="No rating." />
                 <input type="radio" id="first-rate1" name="review[rating]" value="1" />
