@@ -29,8 +29,6 @@ module.exports.login = (req, res) => {
   req.flash('success', 'Welcome back!')
   // if there's a redirectURL, it will go to that, if not, it will default to redirecting to '/campgrounds'
   const redirectURL = req.session.returnTo || '/campgrounds'
-  console.log('this is redirectURL', redirectURL)
-  console.log('this is req.session.returnTo', req.session.returnTo)
   res.redirect(redirectURL)
   delete req.session.returnTo
 }
