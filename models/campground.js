@@ -3,12 +3,16 @@ const Review = require('./review');
 const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
-  url: String,
-  filename: String
+  url: String,    
+  filename: String,
 })
 
 ImageSchema.virtual('thumbnail').get(function() {
-  return this.url.replace('/upload', '/upload/w_200')
+  // if (this.url) {
+    return this.url.replace('/upload', '/upload/w_200')
+  // } else {
+  //   return "https://res.cloudinary.com/dudoovhhx/image/upload/w_200/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg"
+  // }
 })
 
 const opts = { toJSON: { virtuals: true } };
@@ -43,9 +47,15 @@ const CampgroundSchema = new Schema({
 }, opts)
 
 CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
+  let thumb = null
+  if (this.images.length) {
+    thumb = this.images[0].thumbnail
+  } else {
+    thumb = "https://res.cloudinary.com/dudoovhhx/image/upload/w_200/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg"
+  }
   return `
-  <strong><a href="/campgrounds/${this._id}">${this.title}</a><strong>
-  <p>${this.description.substring(0, 20)}...</p>`
+  <strong><a href="/campgrounds/${this._id}">${this.title}</a><strong>  
+  <img src="${thumb}" width="50">`
 })
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
@@ -60,4 +70,4 @@ CampgroundSchema.post('findOneAndDelete', async function (doc) {
 
 module.exports = mongoose.model('Campground', CampgroundSchema)
 
-// https://source.unsplash.com/collection/483251/1600x900
+// 'https://res.cloudinary.com/dudoovhhx/image/upload/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg'
