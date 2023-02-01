@@ -30,11 +30,11 @@ mongoose.set("strictQuery", false);
 
 mongoose.connect(dbUrl)
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"))
-db.once("open", () => {
-  console.log("Database Connected")
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"))
+// db.once("open", () => {
+//   console.log("Database Connected")
+// });
 
 const app = express()
 
@@ -74,30 +74,9 @@ const sessionConfig = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
+
 app.use(session(sessionConfig))
 app.use(flash())
-
-// app.use(helmet());
-// app.use(
-// 	helmet.contentSecurityPolicy({
-// 		directives: {
-// 			defaultSrc: [],
-// 			connectSrc: ["'self'", ...connectSrcUrls],
-// 			scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-// 			styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-// 			workerSrc: ["'self'", "blob:"],
-// 			objectSrc: [],
-// 			imgSrc: [
-// 				"'self'",
-// 				"blob:",
-// 				"data:",
-// 				`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`,
-// 				"https://images.unsplash.com/",
-// 			],
-// 			fontSrc: ["'self'", ...fontSrcUrls],
-// 		},
-// 	})
-// );
 
 app.use(
   helmet({
@@ -159,6 +138,16 @@ app.use((error, req, res, next) => {
   res.status(statusCode).render("error", { error });
 });
 
-app.listen(port, () => {
-  console.log(`Listening on Port ${ port }`);
-});
+// app.listen(port, () => {
+//   console.log(`Listening on Port ${ port }`);
+// });
+
+main().catch((err) => console.log(err));
+async function main() {
+	mongoose.connect(dbUrl);
+	console.log("Connection open!");
+	// Starting up app on desired port
+	app.listen(port, () => {
+		console.log(`Serving on http://localhost:${port}`);
+	});
+}
