@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shakestuffup73/yelpcamp.git"
+    "url": "git+https://github.com/ssemlitz/yelpcampv2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shakestuffup73/yelpcamp/issues"
+    "url": "https://github.com/ssemlitz/yelpcampv2/issues"
   },
-  "homepage": "https://github.com/shakestuffup73/yelpcamp#readme",
+  "homepage": "https://github.com/ssemlitz/yelpcampv2#readme",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.14.0",
     "cloudinary": "^1.33.0",
