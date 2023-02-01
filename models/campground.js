@@ -47,15 +47,15 @@ const CampgroundSchema = new Schema({
 }, opts)
 
 CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
-  let thumb = null
+  let thumbnail = null
   if (this.images.length) {
-    thumb = this.images[0].thumbnail
+    thumbnail = this.images[0].thumbnail
   } else {
-    thumb = "https://res.cloudinary.com/dudoovhhx/image/upload/w_200/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg"
+    thumbnail = "https://res.cloudinary.com/dudoovhhx/image/upload/w_200/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg"
   }
   return `
   <strong><a href="/campgrounds/${this._id}">${this.title}</a><strong>  
-  <img src="${thumb}" width="50">`
+  <img src="${thumbnail}" width="50">`
 })
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
