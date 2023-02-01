@@ -9,11 +9,11 @@
         <% if (campground.images.length) { %> 
           <% campground.images.forEach((img, idx) => { %>
             <div class="carousel-item <%= idx === 0 ? 'active' : ''%>">
-              <img src="<%= img.url%>" class="d-block w-100" alt="" />
+              <img src="<%= img.url%>" class="d-block w-100" alt="" crossorigin/>
             </div>
             <% }) %>
         <% } else { %> 
-          <img class="img-fluid w-100" src="https://res.cloudinary.com/dudoovhhx/image/upload/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg" alt="">
+          <img class="img-fluid w-100" src="https://res.cloudinary.com/dudoovhhx/image/upload/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg" alt="" crossorigin>
         <% } %>
       </div>
       <% if(campground.images.length > 1) {%>
