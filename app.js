@@ -138,10 +138,8 @@ app.use((error, req, res, next) => {
   res.status(statusCode).render("error", { error });
 });
 
-// app.listen(port, () => {
-//   console.log(`Listening on Port ${ port }`);
-// });
 
+//Connect to database
 main().catch((err) => console.log(err));
 async function main() {
 	mongoose.connect(dbUrl);
