@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+
+<h1>Campground Search</h1>
+
+<div class="row">
+  <% if(foundCampgrounds.length > 0) { %>
+      <p>Showing <strong><%= foundCampgrounds.length %></strong> result(s) for <%= search %>:</p>
+      <% for(let campground of foundCampgrounds) { %>
+        <div class="card mb-3">
+          <div class="row">
+            <div class="col-md-4">
+              <% if (campground.images.length) { %> 
+                <img class="img-fluid" src="<%= campground.images[0].url %>" alt="" crossorigin>
+              <% } else { %> 
+                <img class="img-fluid" src="https://res.cloudinary.com/dudoovhhx/image/upload/v1675180412/YelpCamp/JLCG_tents_Teewinot_2008_mattson_1_senv28.jpg" alt="" crossorigin>
+              <% } %> 
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= campground.title %></h5>
+                <p class="card-text"><%= campground.description %></p>
+                <p class="card-text">
+                  <small class="text-muted"> <%= campground.location %></small>
+                </div>
+                <a class="btn btn-primary mb-3" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
+            </div>
+          </div>
+        </div>        
+      <% } %> 
+  <% } else { %> 
+    <p>There are no campgrounds with that title.</p>
+  <% } %>
+</div>

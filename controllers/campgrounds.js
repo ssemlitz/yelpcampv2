@@ -42,6 +42,25 @@ module.exports.showCampground = async (req, res,) => {
   res.render('campgrounds/show', { campground })
 }
 
+// module.exports.renderSearch = (req, res) => {  
+//   return res.render("campgrounds/search", {foundCampgrounds});
+// }
+
+// let foundCampgrounds = []
+
+module.exports.searchCampgrounds = async (req, res) => {
+  console.log('this is req.body.search in searchCampground controller', req.body.search)
+  search = req.body.search
+  foundCampgrounds = await Campground.find({"title": `${search}`})
+  console.log('this is foundCampgrounds:', foundCampgrounds)
+  if (foundCampgrounds.length > 0) {
+    return res.render("campgrounds/search", {foundCampgrounds, search})
+  } else {
+    req.flash('error', 'No campgrounds found!')
+    return res.redirect('/campgrounds')
+  }
+}
+
 module.exports.renderEditForm = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
   if (!campground) {
