@@ -49,12 +49,12 @@ LINK TO APP HERE:
 
 -----------------
 <h3>ICE BOX ITEMS/FUTURE ENHANCEMENTS:</h3>
-<ul>
-  <li>More CSS styling and map animation improvements</li>
-  <li>Improve mobile device usability and display</li>
-  <li>Search bar functionality</li>
-  <li>Filter campgrounds by type, state, price</li>
-  <li>Image upload constraints</li>
-  <li>Two-column index page</li>
-<i>
+
+- [x] Search bar functionality
+- [ ] More CSS styling and map animation improvements
+- [ ] Improve mobile device usability and display
+- [ ] Filter campgrounds by type, state, price
+- [ ] Image upload constraints
+- [ ] Two-column index page
+
 </ul>
