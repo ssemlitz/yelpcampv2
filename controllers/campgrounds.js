@@ -3,6 +3,7 @@ const { cloudinary } = require('../cloudinary')
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding")
 const mapBoxToken = process.env.MAPBOX_TOKEN
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken })
+const usStates = require('../utils/states.js')
 
 module.exports.index = async (req, res) => {
   const campgrounds = await Campground.find({})
@@ -10,7 +11,7 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.renderNewForm = (req, res) => {
-  res.render('campgrounds/new')
+  res.render('campgrounds/new', usStates );
 }
 
 module.exports.createCampground = async (req, res, next) => {
@@ -51,7 +52,7 @@ module.exports.showCampground = async (req, res,) => {
 module.exports.searchCampgrounds = async (req, res) => {
   console.log('this is req.body.search in searchCampground controller', req.body.search)
   search = req.body.search
-  foundCampgrounds = await Campground.find({"title": `${search}`})
+  foundCampgrounds = await Campground.find({"state": `${search}`})
   console.log('this is foundCampgrounds:', foundCampgrounds)
   if (foundCampgrounds.length > 0) {
     return res.render("campgrounds/search", {foundCampgrounds, search})
