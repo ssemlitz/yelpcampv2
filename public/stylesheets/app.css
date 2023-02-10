@@ -7,3 +7,11 @@
   width: 100%;
   height: 300px;
 }
+
+#index-card {
+  margin: 0 auto;
+}
+
+.index-card-img {
+  margin: auto 0;
+}
