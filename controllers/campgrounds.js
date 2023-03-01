@@ -40,14 +40,8 @@ module.exports.showCampground = async (req, res,) => {
       req.flash('error', 'Cannot find that campground!')
       return res.redirect('/campgrounds')
   }
-  res.render('campgrounds/show', { campground })
+  res.render('campgrounds/show', { campground, usStates })
 }
-
-// module.exports.renderSearch = (req, res) => {  
-//   return res.render("campgrounds/search", {foundCampgrounds});
-// }
-
-// let foundCampgrounds = []
 
 module.exports.searchCampgrounds = async (req, res) => {
   console.log('this is req.body.search in searchCampground controller', req.body.search)
@@ -72,7 +66,7 @@ module.exports.renderEditForm = async (req, res) => {
       req.flash('error', 'You do not have permission to do that.')
       return res.redirect(`/campgrounds/${id}`)
   }
-  res.render('campgrounds/edit', { campground })
+  res.render('campgrounds/edit', { campground, usStates })
 }
 
 module.exports.updateCampground = async (req, res) => {
