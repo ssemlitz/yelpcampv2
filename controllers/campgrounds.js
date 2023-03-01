@@ -11,6 +11,7 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.renderNewForm = (req, res) => {
+  console.log('***********', usStates)
   res.render('campgrounds/new', usStates );
 }
 
